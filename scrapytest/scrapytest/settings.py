@@ -14,6 +14,16 @@ BOT_NAME = 'scrapytest'
 SPIDER_MODULES = ['scrapytest.spiders']
 NEWSPIDER_MODULE = 'scrapytest.spiders'
 
+MYSQL_HOST = 'localhost'
+MYSQL_DBNAME = 'scrapytest'
+MYSQL_USER = 'root'
+MYSQL_PASSWD = '5566'
+
+DOWNLOAD_DELAY = 1
+
+ITEM_PIPELINES = {
+    'scrapytest.pipelines.ScrapytestPipeline': 301,
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapytest (+http://www.yourdomain.com)'
@@ -55,7 +65,10 @@ ROBOTSTXT_OBEY = True
 #DOWNLOADER_MIDDLEWARES = {
 #    'scrapytest.middlewares.ScrapytestDownloaderMiddleware': 543,
 #}
-
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scrapytest.middlewares.ScrapytestSpiderMiddleware': 543,
+}
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
