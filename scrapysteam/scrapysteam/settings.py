@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for scrapytest project
+# Scrapy settings for scrapysteam project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,13 +9,13 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'scrapytest'
+BOT_NAME = 'scrapysteam'
 
-SPIDER_MODULES = ['scrapytest.spiders']
-NEWSPIDER_MODULE = 'scrapytest.spiders'
+SPIDER_MODULES = ['scrapysteam.spiders']
+NEWSPIDER_MODULE = 'scrapysteam.spiders'
 
 MYSQL_HOST = 'localhost'
-MYSQL_DBNAME = 'scrapytest'
+MYSQL_DBNAME = 'steam'
 MYSQL_USER = 'root'
 MYSQL_PASSWD = '5566'
 
@@ -23,11 +23,11 @@ MYSQL_PASSWD = '5566'
 DOWNLOAD_DELAY = 0
 
 ITEM_PIPELINES = {
-    'scrapytest.pipelines.ScrapytestPipeline': 301,
+    'scrapysteam.pipelines.ScrapySteamPipeline': 301,
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'scrapytest (+http://www.yourdomain.com)'
+#USER_AGENT = 'scrapysteam (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -58,17 +58,17 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'scrapytest.middlewares.ScrapytestSpiderMiddleware': 543,
+#    'scrapysteam.middlewares.ScrapysteamSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'scrapytest.middlewares.ScrapytestDownloaderMiddleware': 543,
+#    'scrapysteam.middlewares.ScrapysteamDownloaderMiddleware': 543,
 #}
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'scrapytest.middlewares.ScrapytestSpiderMiddleware': 543,
+    'scrapysteam.middlewares.ScrapysteamSpiderMiddleware': 543,
 }
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -79,7 +79,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'scrapytest.pipelines.ScrapytestPipeline': 300,
+#    'scrapysteam.pipelines.ScrapysteamPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
