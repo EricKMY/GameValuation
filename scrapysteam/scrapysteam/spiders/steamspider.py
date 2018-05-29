@@ -17,7 +17,7 @@ class SteamSpider(CrawlSpider):
 
     def start_requests(self):
         pages = []
-        for i in range(2, 3):
+        for i in range(1, 101):
             url = "https://store.steampowered.com/search/?sort_by=Released_DESC&tags=-1&page=" + str(i)
             yield Request(url=url, callback=self.parse)
 
@@ -27,5 +27,10 @@ class SteamSpider(CrawlSpider):
         item['name'] = response.xpath('//div[contains(@class, "apphub_AppName")]//text()').extract()
         item['url'] = response.url
         item['price'] = response.xpath('//div[contains(@class, "discount_original_price") or contains(@class, "game_purchase_price price")]//text()').extract()
-        print(response.url)
+        item['tag'] = ''.join(response.xpath('//div[contains(@class, "glance_tags popular_tags")]//text()').extract())
+        item['language'] = ''.join(response.xpath('//td[contains(@class, "ellipsis")]//text()').extract())
+        item['introduction'] = ''.join(response.xpath('//div[contains(@class, "game_description_snippet")]//text()').extract())
+        item['about'] = ''.join(response.xpath('//div[contains(@class, "game_area_description")]//text()').extract())
+
+        # print(response.url)
         yield item

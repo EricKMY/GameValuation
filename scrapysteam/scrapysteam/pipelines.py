@@ -29,19 +29,27 @@ class ScrapySteamPipeline(object):
                 ret = self.cursor.fetchone()
                 if ret:
                     self.cursor.execute(
-                        """update game_data set name = %s,url = %s,price = %s""",
+                        """update game_data set name = %s,url = %s,price = %s,tag = %s,
+                        language = %s,introduction = %s,about = %s""",
                         (item['name'],
                          item['url'],
-                         item['price']))
+                         item['price'],
+                         item['tag'],
+                         item['language'],
+                         item['introduction'],
+                         item['about']))
                 else:
                     self.cursor.execute(
-                        """insert into game_data(name,url,price)
-                          value (%s,%s,%s)""",
+                        """insert into game_data(name,url,price,tag,language,introduction,about)
+                          value (%s,%s,%s,%s,%s,%s,%s)""",
                         (item['name'],
                          item['url'],
-                         item['price']))
+                         item['price'],
+                         item['tag'],
+                         item['language'],
+                         item['introduction'],
+                         item['about']))
                 self.connect.commit()
             except Exception as error:
                 print(error)
-                # self.logger.info(error)
             return item
