@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = 'scrapytest.spiders'
 MYSQL_HOST = 'localhost'
 MYSQL_DBNAME = 'scrapytest'
 MYSQL_USER = 'root'
-MYSQL_PASSWD = '5566'
+MYSQL_PASSWD = 'i2345678'
 
 DOWNLOAD_DELAY = 1
 
