@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = 'scrapysteam.spiders'
 MYSQL_HOST = 'localhost'
 MYSQL_DBNAME = 'steam'
 MYSQL_USER = 'root'
-MYSQL_PASSWD = '5566'
+MYSQL_PASSWD = '5566' #密碼為自己的MySQL密碼
 
 # DOWNLOAD_DELAY = 1 (把delay設為1s可防止被ban，主要是減輕server端負載)
 DOWNLOAD_DELAY = 0
