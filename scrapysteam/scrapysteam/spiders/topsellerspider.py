@@ -29,8 +29,8 @@ class SteamSpider(CrawlSpider):
         item['tag'] = ''.join(response.xpath('//div[contains(@class, "glance_tags popular_tags")]//text()').extract())
         item['language'] = ''.join(response.xpath('//td[contains(@class, "ellipsis")]//text()').extract())
         item['date'] = response.xpath('//div[contains(concat(" ", normalize-space(@class), " "), " date ")]//text()').extract()
-        item['sysReqMin'] = ''.join(response.xpath('//div[contains(@class, "game_area_sys_req_leftCol")]//text()').extract())
-        item['sysReqRec'] = ''.join(response.xpath('//div[contains(@class, "game_area_sys_req_rightCol")]//text()').extract())
+        item['sysReqMin'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_leftCol")]//text()').extract())
+        item['sysReqRec'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_rightCol")]//text()').extract())
         item['introduction'] = ''.join(response.xpath('//div[contains(@class, "game_description_snippet")]//text()').extract())
         item['about'] = ''.join(response.xpath('//div[contains(@class, "game_area_description")]//text()').extract())
         yield item
