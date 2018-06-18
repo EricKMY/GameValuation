@@ -25,7 +25,6 @@ class GameFeature():
             sysReqMin = self.CreateSysReq(record[6])
             sysReqRec = self.CreateSysReq(record[7])
             totalSell = 500000000
-
             gameDic[name] = {'price':price, 'language':language, 'date':date, 'sysReqMin':sysReqMin, 'sysReqRec':sysReqRec, 'totalSell':totalSell}
         schema.close()
         return gameDic
