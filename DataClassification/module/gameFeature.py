@@ -26,6 +26,7 @@ class GameFeature():
             sysReqRec = self.CreateSysReq(record[7])
             totalSell = 500000000
             gameDic[name] = {'price':price, 'language':language, 'date':date, 'sysReqMin':sysReqMin, 'sysReqRec':sysReqRec, 'totalSell':totalSell}
+
         schema.close()
         return gameDic
 

@@ -26,6 +26,9 @@ ITEM_PIPELINES = {
     'scrapysteam.pipelines.ScrapySteamPipeline': 301,
 }
 
+# set the depth of crawling to one layer(default = 0, no limit)
+DEPTH_LIMIT = 1
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapysteam (+http://www.yourdomain.com)'
 
@@ -70,6 +73,8 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
     'scrapysteam.middlewares.ScrapysteamSpiderMiddleware': 543,
 }
+
+
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
