@@ -5,15 +5,15 @@ from module.featureDigitalize import FeatureDigitalize
 from module.dataTraining import DataTraining
 
 def main():
-    trainFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller")
-    # testFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller_2017")
-    trainData = FeatureDigitalize(trainFeature.Create())
-    # testData = FeatureDigitalize(testFeature.Create())
-    # result = DataTraining(featureDigit.Digitalize())
-    # result = trainFeature.Create()
-    # for name in result.keys():
-    #     print (result[name])
-    #     print ("\n")
-    print(DataTraining.Training(trainData.Digitalize()))
+    trainFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller").Create()
+    trainData = FeatureDigitalize(trainFeature).Digitalize()
+    testFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller_2017").Create()
+    testData = FeatureDigitalize(testFeature).Digitalize()
+    result1, result2, result3 = DataTraining(trainData, testData).TrainAndTest()
+    
+    print(result1)
+    print(result2)
+    print('\n')
+    print(result3)
 
 print(main())

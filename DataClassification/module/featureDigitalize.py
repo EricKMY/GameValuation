@@ -21,7 +21,7 @@ class FeatureDigitalize():
         releasedMonth = (2018 - date['year']) * 12 + (6 - date['month']) + 1
         if releasedMonth == 0:
             releasedMonth = 1
-        return (totalSell / releasedMonth) / 1000000
+        return (totalSell / releasedMonth)
 
     def DigitalizeLanguage(self, languageList):
         BILLION = 10**9

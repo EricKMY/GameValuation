@@ -4,26 +4,31 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 
 class DataTraining():
-    def __init__(self):
-        pass
+    def __init__(self, trainData, testData):
+        self.trainData = trainData
+        self.testData = testData
 
-    def Training(trainingData):
-        x = []
-        y = []
+    def TrainAndTest(self):
+        trainData = self.trainData
+        testData = self.testData
 
-        for name in trainingData.keys():
-            y.append(trainingData[name]['sellPerMonth'])
-            x.append([trainingData[name]['price'], trainingData[name]['language'], trainingData[name]['sysReqMin'], trainingData[name]['sysReqRec']])
+        train_X, train_Y = self.CreateArray(trainData)
+        test_X, test_Y = self.CreateArray(testData)
 
-        X = np.array(x)
-        Y = np.array(y)
-        lm = LinearRegression()
-        lm.fit(X, Y)
+        module = LinearRegression()
+        module.fit(train_X, train_Y)
+        module.predict(test_X)
 
-        return (lm.coef_, lm.intercept_ )
+        result = (test_Y * 2 - module.predict(test_X)) / test_Y
 
-    def Testing(self, testingData):
-        pass
+        return (module.coef_, module.intercept_, result)
 
-    # def fname(arg):
-    #     pass
+    def CreateArray(self, data):
+        data_x = []
+        data_y = []
+
+        for name in data.keys():
+            data_y.append(data[name]['sellPerMonth'])
+            data_x.append([data[name]['price'], data[name]['language'], data[name]['sysReqMin'], data[name]['sysReqRec']])
+
+        return np.array(data_x), np.array(data_y)

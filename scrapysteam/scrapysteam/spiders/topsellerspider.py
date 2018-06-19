@@ -26,7 +26,7 @@ class SteamSpider(CrawlSpider):
         item = ScrapySteamItem()
         item['name'] = response.xpath('//div[contains(@class, "apphub_AppName")]//text()').extract()
         item['url'] = response.url
-        item['sell'] = (100 - self.rank * 2) * 1000000
+        item['sell'] = (100 - self.rank * 2) * 100000
         item['price'] = ''.join(response.xpath('//div[contains(@class, "discount_original_price") or contains(@class, "game_purchase_price price")]//text()').extract())
         item['tag'] = ''.join(response.xpath('//div[contains(@class, "glance_tags popular_tags")]//text()').extract())
         item['language'] = ''.join(response.xpath('//td[contains(@class, "ellipsis")]//text()').extract())

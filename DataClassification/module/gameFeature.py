@@ -33,12 +33,14 @@ class GameFeature():
         return gameDic
 
     def CreateSell(self, rawMeat):
-        # rawMeat.replace(' ','')
-        # sellRange = rawMeat.split('..')
-        # bottomSell = int(sellRange[0].replace(',',''))
-        # topSell = int(sellRange[1].replace(',',''))
-        # sell = (topSell + bottomSell) / 2
-        sell = int(rawMeat)
+        if rawMeat.find('..') == -1:
+            sell = int(rawMeat)
+        else:
+            rawMeat.replace(' ','')
+            sellRange = rawMeat.split('..')
+            bottomSell = int(sellRange[0].replace(',',''))
+            topSell = int(sellRange[1].replace(',',''))
+            sell = (topSell + bottomSell) / 2
         return sell
 
     def CreatePrice(self, rawMeat):
