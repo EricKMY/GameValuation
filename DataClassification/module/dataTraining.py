@@ -4,11 +4,10 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 
 class DataTraining():
-    def __init__(self, trainingData):
-        self.trainingData = trainingData
+    def __init__(self):
+        pass
 
-    def Training(self):
-        trainingData = self.trainingData
+    def Training(self, trainingData):
         x = []
         y = []
 
@@ -18,8 +17,13 @@ class DataTraining():
 
         X = np.array(x)
         Y = np.array(y)
-
         lm = LinearRegression()
         lm.fit(X, Y)
 
         return (lm.coef_, lm.intercept_ )
+
+    def Testing(self, testingData):
+        pass
+
+    # def fname(arg):
+    #     pass

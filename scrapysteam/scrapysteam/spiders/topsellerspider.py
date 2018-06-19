@@ -14,8 +14,10 @@ class SteamSpider(CrawlSpider):
     ]
 
     def start_requests(self):
+        self.rank = 0
         #range為頁數範圍
-        for i in range(0, 2):
+        for i in range(0, 10):
+            self.rank = i
             url = "https://store.steampowered.com/search/?category1=998&filter=topsellers&page=" + str(i)
             yield Request(url=url, callback=self.parse)
 
@@ -24,7 +26,8 @@ class SteamSpider(CrawlSpider):
         item = ScrapySteamItem()
         item['name'] = response.xpath('//div[contains(@class, "apphub_AppName")]//text()').extract()
         item['url'] = response.url
-        item['price'] = response.xpath('//div[contains(@class, "discount_original_price") or contains(@class, "game_purchase_price price")]//text()').extract()
+        item['sell'] = (100 - self.rank * 2) * 1000000
+        item['price'] = ''.join(response.xpath('//div[contains(@class, "discount_original_price") or contains(@class, "game_purchase_price price")]//text()').extract())
         item['tag'] = ''.join(response.xpath('//div[contains(@class, "glance_tags popular_tags")]//text()').extract())
         item['language'] = ''.join(response.xpath('//td[contains(@class, "ellipsis")]//text()').extract())
         item['date'] = response.xpath('//div[contains(concat(" ", normalize-space(@class), " "), " date ")]//text()').extract()

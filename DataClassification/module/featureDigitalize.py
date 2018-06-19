@@ -12,7 +12,7 @@ class FeatureDigitalize():
             language = self.DigitalizeLanguage(feature[name]['language'])
             sysReqMin = self.DigitalizeSysReq(feature[name]['sysReqMin'])
             sysReqRec = self.DigitalizeSysReq(feature[name]['sysReqRec'])
-            sellPerMonth = self.DigitalizeSell(feature[name]['date'], feature[name]['totalSell'])
+            sellPerMonth = self.DigitalizeSell(feature[name]['date'], feature[name]['sell'])
             digDic[name] = {'sellPerMonth':sellPerMonth, 'price':price, 'language':language, 'sysReqMin':sysReqMin, 'sysReqRec':sysReqRec}
 
         return digDic

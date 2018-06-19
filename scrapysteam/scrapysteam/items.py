@@ -10,10 +10,11 @@ from scrapy import Item, Field
 class ScrapySteamItem(Item):
     name = Field()
     url = Field()
+    sell = Field()
     price = Field()
+    date = Field()
     tag = Field()
     language = Field()
-    date = Field()
     sysReqMin = Field()
     sysReqRec = Field()
     introduction = Field()

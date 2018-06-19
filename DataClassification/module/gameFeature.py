@@ -19,28 +19,56 @@ class GameFeature():
 
         for record in results:
             name = record[0].strip()
-            price = self.CreatePrice(record[2])
-            language = self.CreateLanguage(record[4])
-            date = self.CreateDate(record[5])
-            sysReqMin = self.CreateSysReq(record[6])
-            sysReqRec = self.CreateSysReq(record[7])
-            totalSell = 500000000
-            gameDic[name] = {'price':price, 'language':language, 'date':date, 'sysReqMin':sysReqMin, 'sysReqRec':sysReqRec, 'totalSell':totalSell}
+            sell = self.CreateSell(record[2])
+            price = self.CreatePrice(record[3])
+            date = self.CreateDate(record[4])
+            language = self.CreateLanguage(record[6])
+            sysReqMin = self.CreateSysReq(record[7])
+            sysReqRec = self.CreateSysReq(record[8])
+
+            gameDic[name] = {'sell':sell, 'price':price, 'date':date, 'language':language, 'sysReqMin':sysReqMin, 'sysReqRec':sysReqRec}
 
         schema.close()
         return gameDic
 
+    def CreateSell(self, rawMeat):
+        # rawMeat.replace(' ','')
+        # sellRange = rawMeat.split('..')
+        # bottomSell = int(sellRange[0].replace(',',''))
+        # topSell = int(sellRange[1].replace(',',''))
+        # sell = (topSell + bottomSell) / 2
+        sell = int(rawMeat)
+        return sell
+
     def CreatePrice(self, rawMeat):
         price = rawMeat.strip()
+        price = price.replace(' ', '')
 
-        if price.find("NT$") == -1:
-            price = 0
+        if price.find('Free') == -1:
+            priceList = price.split('NT$')
+            priceList.pop(0)
+            priceList = [int(element.replace(',', '')) for element in priceList]  #string 12,000 -> int 12000
+            price = min(priceList)
         else:
-            price = price.replace('NT$ ', '')
-            price = price.replace(',', '')
-            price = int(price)
+            price = 0
 
         return price
+
+    def CreateDate(self, rawMeat):
+        date = {}
+        dateList = rawMeat.split(', ')
+        date['day'] = int(dateList[0].split(' ')[0])
+        month = dateList[0].split(' ')[-1]
+        monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+        for i in range(len(monthList)):
+            if month == monthList[i]:
+                month = i + 1
+
+        date['month'] = month
+        date['year']  = int(dateList[1])
+
+        return date
 
     def CreateLanguage(self, rawMeat):
         language = []
@@ -59,22 +87,6 @@ class GameFeature():
             language.append('Chinese')
 
         return language
-
-    def CreateDate(self, rawMeat):
-        date = {}
-        dateList = rawMeat.split(', ')
-        date['day'] = int(dateList[0].split(' ')[0])
-        month = dateList[0].split(' ')[-1]
-        monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-
-        for i in range(len(monthList)):
-            if month == monthList[i]:
-                month = i + 1
-
-        date['month'] = month
-        date['year']  = int(dateList[1])
-
-        return date
 
     def CreateSysReq(self, rawMeat):
         sysReqDic = {}

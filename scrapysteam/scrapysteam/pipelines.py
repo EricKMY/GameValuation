@@ -28,28 +28,30 @@ class ScrapySteamPipeline(object):
                 ret = self.cursor.fetchone()
                 if ret:
                     self.cursor.execute(
-                        """update top_seller set name = %s,url = %s,price = %s,tag = %s,
-                        language = %s,date = %s,sys_req_min = %s,sys_req_rec = %s,introduction = %s,about = %s""",
+                        """update top_seller set name = %s,url = %s,sell = %s,price = %s,date = %s,
+                        tag = %s,language = %s,sys_req_min = %s,sys_req_rec = %s,introduction = %s,about = %s""",
                         (item['name'],
                          item['url'],
+                         item['sell'],
                          item['price'],
+                         item['date'],
                          item['tag'],
                          item['language'],
-                         item['date'],
                          item['sysReqMin'],
                          item['sysReqRec'],
                          item['introduction'],
                          item['about']))
                 else:
                     self.cursor.execute(
-                        """insert into top_seller(name,url,price,tag,language,date,sys_req_min,sys_req_rec,introduction,about)
-                          value (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+                        """insert into top_seller(name,url,sell,price,date,tag,language,sys_req_min,sys_req_rec,introduction,about)
+                          value (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
                         (item['name'],
                          item['url'],
+                         item['sell'],
                          item['price'],
+                         item['date'],
                          item['tag'],
                          item['language'],
-                         item['date'],
                          item['sysReqMin'],
                          item['sysReqRec'],
                          item['introduction'],
