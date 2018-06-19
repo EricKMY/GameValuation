@@ -7,7 +7,7 @@ class DataTraining():
     def __init__(self):
         pass
 
-    def Training(self, trainingData):
+    def Training(trainingData):
         x = []
         y = []
 

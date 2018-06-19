@@ -26,7 +26,8 @@ class GameFeature():
             sysReqMin = self.CreateSysReq(record[7])
             sysReqRec = self.CreateSysReq(record[8])
 
-            gameDic[name] = {'sell':sell, 'price':price, 'date':date, 'language':language, 'sysReqMin':sysReqMin, 'sysReqRec':sysReqRec}
+            if not date == "exception":
+                gameDic[name] = {'sell':sell, 'price':price, 'date':date, 'language':language, 'sysReqMin':sysReqMin, 'sysReqRec':sysReqRec}
 
         schema.close()
         return gameDic
@@ -57,6 +58,10 @@ class GameFeature():
     def CreateDate(self, rawMeat):
         date = {}
         dateList = rawMeat.split(', ')
+        try:
+            val = int(dateList[0].split(' ')[0])
+        except ValueError:
+            return "exception"
         date['day'] = int(dateList[0].split(' ')[0])
         month = dateList[0].split(' ')[-1]
         monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']

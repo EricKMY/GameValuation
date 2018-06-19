@@ -16,7 +16,7 @@ class SteamSpider(CrawlSpider):
     def start_requests(self):
         self.rank = 0
         #range為頁數範圍
-        for i in range(0, 10):
+        for i in range(0, 33):
             self.rank = i
             url = "https://store.steampowered.com/search/?category1=998&filter=topsellers&page=" + str(i)
             yield Request(url=url, callback=self.parse)

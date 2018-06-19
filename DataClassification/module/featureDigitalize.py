@@ -19,7 +19,9 @@ class FeatureDigitalize():
 
     def DigitalizeSell(self, date, totalSell):
         releasedMonth = (2018 - date['year']) * 12 + (6 - date['month']) + 1
-        return (totalSell / releasedMonth)
+        if releasedMonth == 0:
+            releasedMonth = 1
+        return (totalSell / releasedMonth) / 1000000
 
     def DigitalizeLanguage(self, languageList):
         BILLION = 10**9
@@ -49,7 +51,7 @@ class FeatureDigitalize():
             if sysName == 'memory':
                 RAM = self.ScoreRAM(sysReqList[sysName]) * 1
 
-        return CPU + GPU + RAM
+        return (CPU + GPU + RAM + 1) / 8
 
     def ScoreCPU(self, cpu):
         if cpu.find('i5') or cpu.find('i7'):

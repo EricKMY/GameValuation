@@ -10,10 +10,10 @@ def main():
     trainData = FeatureDigitalize(trainFeature.Create())
     # testData = FeatureDigitalize(testFeature.Create())
     # result = DataTraining(featureDigit.Digitalize())
-    result = trainFeature.Create()
-    for name in result.keys():
-        print (result[name]['date'])
-        print ("\n")
-    # print(DataTraining.Training(trainingData))
+    # result = trainFeature.Create()
+    # for name in result.keys():
+    #     print (result[name])
+    #     print ("\n")
+    print(DataTraining.Training(trainData.Digitalize()))
 
 print(main())
