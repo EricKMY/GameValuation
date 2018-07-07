@@ -20,6 +20,6 @@ Environment Setting:
 Steps:
   1.open Anaconda shell
   2.go to folder "GameValuation/scrapysteam"
-  3.run "crawl scrapy topsellerspider"
+  3.run "scrapy crawl topsellerspider"
   4.go to folder "GameValuation/DataClassification"
   5.run "main.py"
