@@ -27,7 +27,7 @@ ITEM_PIPELINES = {
 }
 
 # set the depth of crawling to one layer(default = 0, no limit)
-DEPTH_LIMIT = 1
+DEPTH_LIMIT = 2
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'scrapysteam (+http://www.yourdomain.com)'
