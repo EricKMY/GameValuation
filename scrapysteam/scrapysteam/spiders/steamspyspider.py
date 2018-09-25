@@ -16,7 +16,7 @@ class SteamSpider(CrawlSpider):
 
     def start_requests(self):
         #range為頁數範圍
-        for i in range(8, 18):
+        for i in range(16, 18):
             if i < 10:
                 url = "https://steamspy.com/year/200" + str(i)
             else:
@@ -58,6 +58,6 @@ class SteamSpider(CrawlSpider):
         item = response.meta['item']
         item['sysReqMin'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_leftCol")]//text()').extract())
         item['sysReqRec'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_rightCol")]//text()').extract())
-        item['introduction'] = response.xpath('//div[contains(@class, "apphub_AppName")]//text()').extract()
+        item['introduction'] = response.xpath('//div[contains(@class, "game_description_snippet")]//text()').extract()
         item['about'] = ''.join(response.xpath('//div[contains(@class, "game_area_description")]//text()').extract())
         yield item

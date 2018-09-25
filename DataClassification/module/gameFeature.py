@@ -15,7 +15,6 @@ class GameFeature():
         cursor.execute("SELECT * FROM " + self.table)
         results = cursor.fetchall()
         gameDic = {}
-        nameList = []
 
         for record in results:
             name = record[0].strip()
@@ -28,9 +27,12 @@ class GameFeature():
             # sysReqMin = self.CreateSysReq(record[7])
             # sysReqRec = self.CreateSysReq(record[8])
 
-            # if not date == "exception":
-            gameDic[name] = {'sell':sell, 'price':price, 'date':date, 'tag':tag, 'language':language}
+            introduction = self.CreateIntroduction(record[9])
+            about = self.CreateAbout(record[10])
 
+            # if not date == "exception":
+            gameDic[name] = {'sell':sell, 'price':price, 'date':date, 'tag':tag, 'language':language, 'introduction':introduction, 'about':about}
+        
         schema.close()
         return gameDic
 
@@ -66,31 +68,53 @@ class GameFeature():
 
     def CreateDate(self, rawMeat):
         date = {}
-        if rawMeat.find(", ") == -1:
-            dateList = rawMeat.split(' ')
-        else:
-            dateList = rawMeat.split(', ')
-        # return dateList
-        # try:
-        #     val = int(dateList[0].split(' ')[0])
-        # except ValueError:
-        #     return "exception"
-        if len(dateList) == 4 :
-            date['day'] = 1
-            del dateList[0]
-            del dateList[-1]
-        else:
-            dateList[0] = dateList[0].replace(':', '').strip()
-            date['day'] = int(dateList[0].split(' ')[1])
-        month = dateList[0].split(' ')[0]
+        # if rawMeat.find(",") == -1:
+        #     dateList = rawMeat.split(' ')
+        # else:
+        #     dateList = rawMeat.split(',')
+        # # return dateList
+
+        # # : Dec 19, 2017 (previously 
+        # # : Dec 19, 2017
+        # # : Dec 2017
+        # # : Dec 2017 (previously 
+
+        # # try:
+        # #     val = int(dateList[0].split(' ')[0])
+        # # except ValueError:
+        # #     return "exception"
+        # if len(dateList) == 5:
+        #     date['day'] = 1
+        #     del dateList[0]
+        #     del dateList[-1]
+        #     del dateList[-2]
+        # elif len(dateList) == 4 :
+        #     date['day'] = 1
+        #     del dateList[0]
+        #     del dateList[-1]
+        # elif len(dateList) == 2 :
+        #     dateList[0] = dateList[0].replace(':', '').strip()
+        #     # date['day'] = int(dateList[0].split(' ')[-1])
+        # else:
+        #     print (dateList + "ERROR")
+        # month = dateList[0].split(' ')[0]
+        yearList = ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018']
         monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-        for i in range(len(monthList)):
-            if month == monthList[i]:
-                month = i + 1
+        for year in yearList:
+            if rawMeat.find(year) != -1:
+                date['year'] = int(year)
+                break
+        count = 0
+        for month in monthList:
+            count += 1
+            if rawMeat.find(month) != -1:
+                date['month'] = count
 
-        date['month'] = month
-        date['year']  = int(dateList[-1])
+
+        # date['month'] = month
+        # year = dateList[-1][0:4]
+        # date['year']  = int(year)
 
         return date
 
@@ -132,3 +156,14 @@ class GameFeature():
                     break
 
         return sysReqDic
+
+    def CreateIntroduction(self, rawMeat):
+        introduction = rawMeat.strip()
+        return introduction
+
+    def CreateAbout(self, rawMeat):
+        aboutList = []
+        tempList = rawMeat.splitlines()
+        for element in tempList:
+            aboutList.append(element.strip())
+        return aboutList

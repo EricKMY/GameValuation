@@ -7,9 +7,11 @@ from module.dataTraining import DataTraining
 def main():
     # trainFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller").Create()
     trainFeature = GameFeature("localhost", "root", "5566", "steam", "steam_spy").Create()
-    print(trainFeature)
-    # for name in trainFeature.keys():
-    #     print (trainFeature[name])
+    # print(trainFeature)
+    # count = 0
+    for name in trainFeature.keys():
+        print (trainFeature[name])
+    # print(count)
     # trainData = FeatureDigitalize(trainFeature).Digitalize()
     # testFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller_2017").Create()
     # testData = FeatureDigitalize(testFeature).Digitalize()
@@ -33,3 +35,5 @@ def main():
     # print(a,b)
 
 print(main())
+
+#sql clear table: TRUNCATE TABLE table_name ex.TRUNCATE TABLE steam_spy
