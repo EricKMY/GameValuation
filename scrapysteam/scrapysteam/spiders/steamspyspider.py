@@ -16,12 +16,13 @@ class SteamSpider(CrawlSpider):
 
     def start_requests(self):
         #range為頁數範圍
-        for i in range(16, 18):
-            if i < 10:
-                url = "https://steamspy.com/year/200" + str(i)
-            else:
-                url = "https://steamspy.com/year/20" + str(i)
-            yield Request(url=url, callback=self.parse)
+        # for i in range(16, 18):
+        #     if i < 10:
+        #         url = "https://steamspy.com/year/200" + str(i)
+        #     else:
+        #         url = "https://steamspy.com/year/20" + str(i)
+        url = "https://steamspy.com/year/2015"
+        yield Request(url=url, callback=self.parse)
            
 
     # 不要使用parse，會覆蓋掉crawlspider本身的parse
@@ -34,27 +35,11 @@ class SteamSpider(CrawlSpider):
         item['tag'] = '!!'.join(response.xpath('//a[starts-with(@href, "/tag/")]//text()').extract())
         item['language'] = '!!'.join(response.xpath('//a[starts-with(@href, "/language/")]//text()').extract())
         item['date'] = response.xpath('//div[@class="p-r-30"]//text()[.="Release date"]/following::text()[string-length()>0][1]').extract()
-        target = response.xpath('//a[contains(text(), "Store")]/@href').extract()[0]
 
-        # hxs = HtmlXPathSelector(response)
-        # response.url = hxs.select('//a[contains(text(), "Store")]/@href').extract()
-        # item['sysReqMin'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_leftCol")]//text()').extract())
-        # item['sysReqRec'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_rightCol")]//text()').extract())
-        # item['introduction'] = ''.join(target.xpath('//div[contains(@class, "apphub_AppName")]//text()').extract())
-        # item['about'] = ''.join(response.xpath('//div[contains(@class, "game_area_description")]//text()').extract())
-        # item['sell'] = '2'
-        # item['price'] = "s"
-        # item['tag'] = "s"
-        # item['language'] = "s"
-        # item['date'] = "s"
-        # item['sysReqMin'] = "s"
-        # item['sysReqRec'] = "s"
-        # item['introduction'] = response.url
-        # item['about'] = "s"
-        # yield item
-        yield Request(target, meta={'item': item}, callback = self.parse_detail)
+        target = response.xpath('//a[contains(text(), "Store")]/@href').extract()[0]
+        yield Request(target, meta={'item': item}, callback = self.parse_store)
     
-    def parse_detail(self, response):
+    def parse_store(self, response):
         item = response.meta['item']
         item['sysReqMin'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_leftCol")]//text()').extract())
         item['sysReqRec'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_rightCol")]//text()').extract())

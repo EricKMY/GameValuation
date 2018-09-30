@@ -8,20 +8,24 @@ class FeatureDigitalize():
         feature = self.gameFeature
         digDic = {}
         for name in feature.keys():
+            sell = self.DigitalizeSell(feature[name]['sell']['min'], feature[name]['sell']['max'])
             price = feature[name]['price']
             language = self.DigitalizeLanguage(feature[name]['language'])
-            sysReqMin = self.DigitalizeSysReq(feature[name]['sysReqMin'])
-            sysReqRec = self.DigitalizeSysReq(feature[name]['sysReqRec'])
-            sellPerMonth = self.DigitalizeSell(feature[name]['date'], feature[name]['sell'])
-            digDic[name] = {'sellPerMonth':sellPerMonth, 'price':price, 'language':language, 'sysReqMin':sysReqMin, 'sysReqRec':sysReqRec}
+            tag = self.DigitalizeTag(feature[name]['tag'])
+            digDic[name] = {'sell' :sell, 'price' :price, 'language' :language, 'tag' : tag}
+            # sysReqMin = self.DigitalizeSysReq(feature[name]['sysReqMin'])
+            # sysReqRec = self.DigitalizeSysReq(feature[name]['sysReqRec'])
+            # sellPerMonth = self.DigitalizeSell(feature[name]['date'], feature[name]['sell'])
+            # digDic[name] = {'sellPerMonth':sellPerMonth, 'price':price, 'language':language, 'sysReqMin':sysReqMin, 'sysReqRec':sysReqRec}
 
         return digDic
 
-    def DigitalizeSell(self, date, totalSell):
-        releasedMonth = (2018 - date['year']) * 12 + (6 - date['month']) + 1
-        if releasedMonth == 0:
-            releasedMonth = 1
-        return (totalSell / releasedMonth)
+    def DigitalizeSell(self, min, max):
+        # releasedMonth = (2018 - date['year']) * 12 + (6 - date['month']) + 1
+        # if releasedMonth == 0:
+        #     releasedMonth = 1
+        # return (totalSell / releasedMonth)
+        return ((min + max) / 2000000)
 
     def DigitalizeLanguage(self, languageList):
         BILLION = 10**9
@@ -39,37 +43,40 @@ class FeatureDigitalize():
                 population += languagePopulationDic[language]
 
         return population / WORLD_POPULATION
+    
+    def DigitalizeTag(self, tagList):
+        return len(tagList)
 
-    def DigitalizeSysReq(self, sysReqList):
-        CPU = GPU = RAM = 0
+    # def DigitalizeSysReq(self, sysReqList):
+    #     CPU = GPU = RAM = 0
 
-        for sysName in sysReqList:
-            if sysName == 'processor':
-                CPU = self.ScoreCPU(sysReqList[sysName]) * 4
-            if sysName == 'graphics':
-                GPU = self.ScoreGPU(sysReqList[sysName]) * 2
-            if sysName == 'memory':
-                RAM = self.ScoreRAM(sysReqList[sysName]) * 1
+    #     for sysName in sysReqList:
+    #         if sysName == 'processor':
+    #             CPU = self.ScoreCPU(sysReqList[sysName]) * 4
+    #         if sysName == 'graphics':
+    #             GPU = self.ScoreGPU(sysReqList[sysName]) * 2
+    #         if sysName == 'memory':
+    #             RAM = self.ScoreRAM(sysReqList[sysName]) * 1
 
-        return (CPU + GPU + RAM + 1) / 8
+    #     return (CPU + GPU + RAM + 1) / 8
 
-    def ScoreCPU(self, cpu):
-        if cpu.find('i5') or cpu.find('i7'):
-            return 1
-        else:
-            return 0
+    # def ScoreCPU(self, cpu):
+    #     if cpu.find('i5') or cpu.find('i7'):
+    #         return 1
+    #     else:
+    #         return 0
 
-    def ScoreGPU(self, gpu):
-        if gpu.find('512 MB VRAM'):
-            return 1
-        else:
-            return 0
+    # def ScoreGPU(self, gpu):
+    #     if gpu.find('512 MB VRAM'):
+    #         return 1
+    #     else:
+    #         return 0
 
-    def ScoreRAM(self, ram):
-        ramList = ram.strip()
-        RAM = int(ramList[0])
+    # def ScoreRAM(self, ram):
+    #     ramList = ram.strip()
+    #     RAM = int(ramList[0])
 
-        if RAM > 4:
-            return 1
-        else:
-            return 0
+    #     if RAM > 4:
+    #         return 1
+    #     else:
+    #         return 0
