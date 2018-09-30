@@ -8,10 +8,11 @@ def main():
     # trainFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller").Create()
     trainFeature = GameFeature("localhost", "root", "5566", "steam", "steam_spy").Create()
     # print(trainFeature)
-    # count = 0
+    count = 0
     for name in trainFeature.keys():
         print (trainFeature[name])
-    # print(count)
+        count += 1
+    print(count)
     # trainData = FeatureDigitalize(trainFeature).Digitalize()
     # testFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller_2017").Create()
     # testData = FeatureDigitalize(testFeature).Digitalize()
