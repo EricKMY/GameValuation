@@ -29,22 +29,12 @@ class GameFeature():
 
             introduction = self.CreateIntroduction(record[9])
             about = self.CreateAbout(record[10])
-
-            # if not date == "exception":
             gameDic[name] = {'sell':sell, 'price':price, 'date':date, 'tag':tag, 'language':language, 'introduction':introduction, 'about':about}
         
         schema.close()
         return gameDic
 
     def CreateSell(self, rawMeat):
-        # if rawMeat.find('..') == -1:
-        #     sell = int(rawMeat)
-        # else:
-        #     rawMeat.replace(' ','')
-        #     sellRange = rawMeat.split('..')
-        #     bottomSell = int(sellRange[0].replace(',',''))
-        #     topSell = int(sellRange[1].replace(',',''))
-        #     sell = (topSell + bottomSell) / 2
         sellDic = {}
         sell = rawMeat.split('\xa0..\xa0')
         sellDic['min'] = int(sell[0].replace(',', '').replace(': ', ''))
@@ -68,36 +58,6 @@ class GameFeature():
 
     def CreateDate(self, rawMeat):
         date = {}
-        # if rawMeat.find(",") == -1:
-        #     dateList = rawMeat.split(' ')
-        # else:
-        #     dateList = rawMeat.split(',')
-        # # return dateList
-
-        # # : Dec 19, 2017 (previously 
-        # # : Dec 19, 2017
-        # # : Dec 2017
-        # # : Dec 2017 (previously 
-
-        # # try:
-        # #     val = int(dateList[0].split(' ')[0])
-        # # except ValueError:
-        # #     return "exception"
-        # if len(dateList) == 5:
-        #     date['day'] = 1
-        #     del dateList[0]
-        #     del dateList[-1]
-        #     del dateList[-2]
-        # elif len(dateList) == 4 :
-        #     date['day'] = 1
-        #     del dateList[0]
-        #     del dateList[-1]
-        # elif len(dateList) == 2 :
-        #     dateList[0] = dateList[0].replace(':', '').strip()
-        #     # date['day'] = int(dateList[0].split(' ')[-1])
-        # else:
-        #     print (dateList + "ERROR")
-        # month = dateList[0].split(' ')[0]
         yearList = ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018']
         monthList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
@@ -105,16 +65,12 @@ class GameFeature():
             if rawMeat.find(year) != -1:
                 date['year'] = int(year)
                 break
+
         count = 0
         for month in monthList:
             count += 1
             if rawMeat.find(month) != -1:
                 date['month'] = count
-
-
-        # date['month'] = month
-        # year = dateList[-1][0:4]
-        # date['year']  = int(year)
 
         return date
 
@@ -124,22 +80,6 @@ class GameFeature():
         return tagList
 
     def CreateLanguage(self, rawMeat):
-        # language = []
-        # languageList = rawMeat.splitlines()
-        # chineseExist = False
-        # del languageList[0]
-        #
-        # for element in languageList:
-        #     element = element.strip()
-        #     if element == 'Traditional Chinese' or element == 'Simplified Chinese':
-        #         chineseExist = True
-        #     else:
-        #         language.append(element)
-        #
-        # if chineseExist:
-        #     language.append('Chinese')
-        #
-        # return language
         language = rawMeat.replace('English!!EN!!Russian!!RU!!German!!DE!!Spanish!!SP!!Chinese!!CH!!French!!FR!!Polish!!PL!!Turkish!!TR!!Swedish!!SW!!', '')
         languageList = language.split('!!')
         return languageList
