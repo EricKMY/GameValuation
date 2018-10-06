@@ -3,6 +3,7 @@
 from module.gameFeature import GameFeature
 from module.featureDigitalize import FeatureDigitalize
 from module.dataTraining import DataTraining
+from pprint import pprint
 
 def main():
     # trainFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller").Create()
@@ -16,12 +17,15 @@ def main():
     trainData = FeatureDigitalize(trainFeature).Digitalize()
     # testFeature = GameFeature("localhost", "root", "5566", "steam", "top_seller_2017").Create()
     # testData = FeatureDigitalize(testFeature).Digitalize()
-    result1, result2, result3 = DataTraining(trainData, trainData).TrainAndTest()
+    coef, intercept, std, amin, amax, result = DataTraining(trainData, trainData).TrainAndTest()
     
-    print(result1)
-    print(result2)
+    print(coef)
+    print(intercept)
     print('\n')
-    print(result3)
+    print(std)
+    print(amin)
+    print(amax)
+    print(result)
 
     # a = b = 0
     # 

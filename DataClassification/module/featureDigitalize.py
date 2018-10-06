@@ -9,10 +9,12 @@ class FeatureDigitalize():
         digDic = {}
         for name in feature.keys():
             sell = self.DigitalizeSell(feature[name]['sell']['min'], feature[name]['sell']['max'])
+            sellMin = feature[name]['sell']['min']
+            sellMax = feature[name]['sell']['max']
             price = feature[name]['price']
             language = self.DigitalizeLanguage(feature[name]['language'])
             tag = self.DigitalizeTag(feature[name]['tag'])
-            digDic[name] = {'sell' :sell, 'price' :price, 'language' :language, 'tag' : tag}
+            digDic[name] = {'sell' :sell, 'sellMin' :sellMin, 'sellMax' :sellMax, 'price' :price, 'language' :language, 'tag' : tag}
             # sysReqMin = self.DigitalizeSysReq(feature[name]['sysReqMin'])
             # sysReqRec = self.DigitalizeSysReq(feature[name]['sysReqRec'])
             # sellPerMonth = self.DigitalizeSell(feature[name]['date'], feature[name]['sell'])
