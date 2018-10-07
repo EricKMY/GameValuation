@@ -23,3 +23,5 @@ Steps:
   3.run "scrapy crawl topsellerspider"
   4.go to folder "GameValuation/DataClassification"
   5.run "main.py"
+
+#sql clear table: TRUNCATE TABLE table_name ex.TRUNCATE TABLE steam_spy

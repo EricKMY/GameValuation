@@ -44,4 +44,3 @@ def main():
 
 print(main())
 
-#sql clear table: TRUNCATE TABLE table_name ex.TRUNCATE TABLE steam_spy

@@ -19,3 +19,4 @@ class ScrapySteamItem(Item):
     sysReqRec = Field()
     introduction = Field()
     about = Field()
+    youtube = Field()

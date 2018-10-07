@@ -21,7 +21,7 @@ class SteamSpider(CrawlSpider):
         #         url = "https://steamspy.com/year/200" + str(i)
         #     else:
         #         url = "https://steamspy.com/year/20" + str(i)
-        url = "https://steamspy.com/year/2016"
+        url = "https://steamspy.com/year/2015"
         yield Request(url=url, callback=self.parse)
            
 
@@ -35,6 +35,7 @@ class SteamSpider(CrawlSpider):
         item['tag'] = '!!'.join(response.xpath('//a[starts-with(@href, "/tag/")]//text()').extract())
         item['language'] = '!!'.join(response.xpath('//a[starts-with(@href, "/language/")]//text()').extract())
         item['date'] = response.xpath('//div[@class="p-r-30"]//text()[.="Release date"]/following::text()[string-length()>0][1]').extract()
+        item['youtube'] = response.xpath('//div[@class="p-r-30"]//text()[.="YouTube stats"]/following::text()[string-length()>0][1]').extract()
 
         target = response.xpath('//a[contains(text(), "Store")]/@href').extract()[0]
         yield Request(target, meta={'item': item}, callback = self.parse_store)
