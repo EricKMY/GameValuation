@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Game Valuation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body background="{{ url_for('static',filename='background.png') }}">
+    <form method="post" >
+        <div>
+            <label style="font-size: 40px">名稱 </label>
+            <input style="overflow:scroll; padding-right:50%" type="textbox" name="title" >
+        </div>
+        <div>
+            <label style="font-size: 40px">簡介 </label>
+            <input style="overflow:scroll; padding-right:50%" type="textbox" name="short_introduction">
+        </div>
+        <div>
+            <label style="font-size: 40px">介紹 </label>
+            <input style="overflow:scroll; padding-right:50%" type="textbox" name="introduction">
+        </div>
+        <div>
+            <label style="font-size: 40px">標籤 </label>
+            <input style="overflow:scroll; padding-right:50%" type="textbox" name="tag">
+        </div>
+        <div>
+            <label style="font-size: 40px">語言 </label>
+            <input style="overflow:scroll; padding-right:50%" type="textbox" name="language">
+        </div>
+        <div>
+            <label style="font-size: 40px">售價 </label>
+            <input style="overflow:scroll; padding-right:50%" type="textbox" name="price">
+        </div>
+        <div>
+            <label style="font-size: 40px">外部因素 </label>
+            <input style="overflow:scroll; padding-right:50%" type="textbox" name="other" >
+        </div>
+        <input type="submit" style="font-size: 40px" value="計算">
+        <div>
+            <label style="font-size: 40px; display: none;" id="label_result">銷量 </label>
+            <label style="font-size: 40px; display: none;" id="sold"></label>
+        </div>
+    </form>
+    <script>
+        var sold = {{sold|tojson}};
+        if(sold != ''){
+            document.getElementById("sold").style.display="";
+            document.getElementById("label_result").style.display="";
+            document.getElementById("sold").innerText=sold;
+        }
+    </script>
+</body>
+  
+    
+</html>
