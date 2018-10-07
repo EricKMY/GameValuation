@@ -50,8 +50,8 @@ class DataTraining():
 
         return (module.coef_, module.intercept_, std, amin, amax, resultList)
 
-    # def Predict(self):
-    #     pass
+    def Predict(self):
+        pass
 
     def CreateArray(self, data):
         data_x = []
