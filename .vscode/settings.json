@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "python.pythonPath": "C:\\Users\\EricKuan\\Anaconda3\\python.exe",
     "shellLauncher.shells.windows": [
         {
@@ -20,3 +21,7 @@
     ]
 }
 
+=======
+    "python.pythonPath": "C:\\Users\\user\\Anaconda3\\python.exe"
+}
+>>>>>>> f5a2a78da71b41697a102bed0038565f81b1c646
