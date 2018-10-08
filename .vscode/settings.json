@@ -1,3 +1,22 @@
 {
-    "python.pythonPath": "C:\\Users\\EricKuan\\Anaconda3\\python.exe"
+    "python.pythonPath": "C:\\Users\\EricKuan\\Anaconda3\\python.exe",
+    "shellLauncher.shells.windows": [
+        {
+          "shell": "C:\\Users\\EricKuan\\Anaconda3\\python.exe",
+          "label": "anaconda"
+        },
+            {
+      "shell": "C:\\Windows\\System32\\cmd.exe",
+      "label": "cmd"
+    },
+    {
+      "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "label": "PowerShell"
+    },
+    {
+      "shell": "C:\\Program Files\\Git\\bin\\bash.exe",
+      "label": "Git bash"
+    }
+    ]
 }
+
