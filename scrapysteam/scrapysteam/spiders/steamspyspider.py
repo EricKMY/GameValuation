@@ -34,8 +34,8 @@ class SteamSpider(CrawlSpider):
         item['price'] = response.xpath('//div[@class="p-r-30"]//text()[.="Price:"]/following::text()[string-length()>0][1]').extract()
         item['tag'] = '!!'.join(response.xpath('//a[starts-with(@href, "/tag/")]//text()').extract())
         item['language'] = '!!'.join(response.xpath('//a[starts-with(@href, "/language/")]//text()').extract())
-        item['date'] = response.xpath('//div[@class="p-r-30"]//text()[.="Release date"]/following::text()[string-length()>0][1]').extract()
-        item['youtube'] = response.xpath('//div[@class="p-r-30"]//text()[.="YouTube stats"]/following::text()[string-length()>0][1]').extract()
+        item['date'] = ''.join(response.xpath('//div[@class="p-r-30"]//text()[.="Release date"]/following::text()[string-length()>0][1]').extract())
+        item['youtube'] = ''.join(response.xpath('//div[@class="p-r-30"]//text()[.="YouTube stats"]/following::text()[string-length()>0][1]').extract())
 
         target = response.xpath('//a[contains(text(), "Store")]/@href').extract()[0]
         yield Request(target, meta={'item': item}, callback = self.parse_store)
@@ -44,6 +44,6 @@ class SteamSpider(CrawlSpider):
         item = response.meta['item']
         item['sysReqMin'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_leftCol")]//text()').extract())
         item['sysReqRec'] = '!!'.join(response.xpath('//div[contains(@class, "game_area_sys_req_rightCol")]//text()').extract())
-        item['introduction'] = response.xpath('//div[contains(@class, "game_description_snippet")]//text()').extract()
+        item['introduction'] = ''.join(response.xpath('//div[contains(@class, "game_description_snippet")]//text()').extract())
         item['about'] = ''.join(response.xpath('//div[contains(@class, "game_area_description")]//text()').extract())
         yield item

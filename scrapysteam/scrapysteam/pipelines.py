@@ -24,11 +24,11 @@ class ScrapySteamPipeline(object):
     def process_item(self, item, spider):
         if item.__class__ == ScrapySteamItem:
             try:
-                self.cursor.execute("""select * from steam_spy_2016 where url = %s""", item["url"])
+                self.cursor.execute("""select * from steam_spy_2015 where url = %s""", item["url"])
                 ret = self.cursor.fetchone()
                 if ret:
                     self.cursor.execute(
-                        """update steam_spy_2016 set name = %s,url = %s,sell = %s,price = %s,date = %s,
+                        """update steam_spy_2015 set name = %s,url = %s,sell = %s,price = %s,date = %s,
                         tag = %s,language = %s,sys_req_min = %s,sys_req_rec = %s,introduction = %s,about = %s,youtube = %s""",
                         (item['name'],
                          item['url'],
@@ -44,7 +44,7 @@ class ScrapySteamPipeline(object):
                          item['youtube']))
                 else:
                     self.cursor.execute(
-                        """insert into steam_spy_2016(name,url,sell,price,date,tag,language,sys_req_min,sys_req_rec,introduction,about,youtube)
+                        """insert into steam_spy_2015(name,url,sell,price,date,tag,language,sys_req_min,sys_req_rec,introduction,about,youtube)
                           value (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
                         (item['name'],
                          item['url'],
