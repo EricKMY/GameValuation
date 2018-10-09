@@ -8,13 +8,6 @@ class DataTraining():
         self.trainData = trainData
         self.testData = testData
 
-    def Train(self):
-        trainData = self.trainData
-        train_X, train_Y, train_YMin, train_YMax = self.CreateArray(trainData)
-        module = LinearRegression()
-        module.fit(train_X, train_Y)
-        return (module.coef_, module.intercept_)
-
     def TrainAndTest(self):
         trainData = self.trainData
         testData = self.testData
@@ -38,11 +31,6 @@ class DataTraining():
             else:
                 resultList.append(0)
 
-        # result = (test_Y - module.predict(test_X)) / test_Y
-        # matchMin = (module.predict(test_X) > test_YMin)
-        # matchMax = (module.predict(test_X) < test_YMax)
-        # match = matchMin.astype(int) *  matchMax.astype(int)
-        # reg = LinearRegression().fit(test_Y, module.coef_)
         result =  np.array(resultList)
         std = np.std(result, ddof = 1)
         amin = np.amin(result)
@@ -50,8 +38,19 @@ class DataTraining():
 
         return (module.coef_, module.intercept_, std, amin, amax, resultList)
 
-    def Predict(self):
-        pass
+    def TrainAndPredict(self):
+        trainData = self.trainData
+        targetData = self.testData
+
+        train_X, train_Y, train_YMin, train_YMax = self.CreateArray(trainData)
+        target_X, target_Y, target_YMin, target_YMax = self.CreateArray(targetData)
+
+        module = LinearRegression()
+        module.fit(train_X, train_Y)
+        target_Y = module.predict(target_X)
+
+        return target_Y
+        
 
     def CreateArray(self, data):
         data_x = []
