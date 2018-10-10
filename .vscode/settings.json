@@ -1,8 +1,8 @@
 {
-    "python.pythonPath": "C:\\Users\\user\\Anaconda3\\python.exe",
+    "python.pythonPath": "C:\\Users\\EricKuan\\Anaconda3\\python.exe",
     "shellLauncher.shells.windows": [
         {
-          "shell": "C:\\Users\\user\\Anaconda3\\python.exe",
+          "shell": "C:\\Users\\EricKuan\\Anaconda3\\python.exe",
           "label": "anaconda"
         },
             {

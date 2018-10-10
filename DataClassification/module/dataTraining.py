@@ -1,6 +1,7 @@
 # -*-coding:utf-8-*-
 
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
 class DataTraining():
@@ -27,16 +28,19 @@ class DataTraining():
             if predictList[i] > test_YMax[i]:
                 resultList.append((predictList[i] - test_YMax[i]) / test_YMax[i])
             elif predictList[i] < test_YMin[i]:
-                resultList.append((test_YMin[i] - predictList[i]) / test_YMin[i])
+                resultList.append((predictList[i] - test_YMin[i]) / test_YMin[i])
             else:
                 resultList.append(0)
 
         result =  np.array(resultList)
         std = np.std(result, ddof = 1)
+        avg = np.histogram(result)
         amin = np.amin(result)
         amax = np.amax(result)
+        plt.boxplot(result)
+        plt.show()
 
-        return (module.coef_, module.intercept_, std, amin, amax, resultList)
+        return (module.coef_, module.intercept_, avg, amin, amax, resultList)
 
     def TrainAndPredict(self):
         trainData = self.trainData
@@ -62,6 +66,6 @@ class DataTraining():
             data_y.append(data[name]['sell'])
             data_yMin.append(data[name]['sellMin'])
             data_yMax.append(data[name]['sellMax'])
-            data_x.append([data[name]['price'], data[name]['language'], data[name]['tag']])
+            data_x.append([data[name]['price'], data[name]['Mlanguage'], data[name]['tag'], data[name]['introduction'], data[name]['about'], data[name]['Kview']])
 
         return np.array(data_x), np.array(data_y), data_yMin, data_yMax

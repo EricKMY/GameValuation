@@ -16,13 +16,13 @@ class SteamSpider(CrawlSpider):
 
     def start_requests(self):
         #range為頁數範圍
-        # for i in range(16, 18):
-        #     if i < 10:
-        #         url = "https://steamspy.com/year/200" + str(i)
-        #     else:
-        #         url = "https://steamspy.com/year/20" + str(i)
-        url = "https://steamspy.com/year/2016"
-        yield Request(url=url, callback=self.parse)
+        for i in range(8, 19):
+            if i < 10:
+                url = "https://steamspy.com/year/200" + str(i)
+            else:
+                url = "https://steamspy.com/year/20" + str(i)
+        # url = "https://steamspy.com/year/2017"
+            yield Request(url=url, callback=self.parse)
            
 
     # 不要使用parse，會覆蓋掉crawlspider本身的parse

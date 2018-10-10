@@ -12,9 +12,12 @@ class FeatureDigitalize():
             sellMin = feature[name]['sell']['min']
             sellMax = feature[name]['sell']['max']
             price = feature[name]['price']
-            language = self.DigitalizeLanguage(feature[name]['language'])
+            Mlanguage = self.DigitalizeLanguage(feature[name]['language'])
             tag = self.DigitalizeTag(feature[name]['tag'])
-            digDic[name] = {'sell' :sell, 'sellMin' :sellMin, 'sellMax' :sellMax, 'price' :price, 'language' :language, 'tag' : tag}
+            introduction = len(feature[name]['introduction'])
+            about = len(feature[name]['about'])
+            Kview = feature[name]['view'] / 1000
+            digDic[name] = {'sell' :sell, 'sellMin' :sellMin, 'sellMax' :sellMax, 'price' :price, 'Mlanguage' :Mlanguage, 'tag' : tag, 'introduction' : introduction, 'about' : about, 'Kview' : Kview}
             # sysReqMin = self.DigitalizeSysReq(feature[name]['sysReqMin'])
             # sysReqRec = self.DigitalizeSysReq(feature[name]['sysReqRec'])
             # sellPerMonth = self.DigitalizeSell(feature[name]['date'], feature[name]['sell'])
@@ -27,24 +30,28 @@ class FeatureDigitalize():
         # if releasedMonth == 0:
         #     releasedMonth = 1
         # return (totalSell / releasedMonth)
-        return ((min + max) / 2000000)
+        return ((min + max) / 2)
+        # return max
 
     def DigitalizeLanguage(self, languageList):
         BILLION = 10**9
         MILLION = 10**6
-        WORLD_POPULATION = 7.62 * BILLION
-        population = 0
+        # WORLD_POPULATION = 7.62 * BILLION
+        totalPopulation = 0
         languagePopulationDic = {'English':1.12*BILLION, 'Chinese':1.1*BILLION, 'Spanish':512.9*MILLION,
         'French':284.9*MILLION, 'Russian':264.3*MILLION, 'Portuguese':236.5*MILLION,
         'Portuguese-Brazil':236.5*MILLION , 'German':132*MILLION, 'Japanese':128.3*MILLION,
         'Turkish':78.9*MILLION, 'Korean':77.2*MILLION, 'Italian':67.8*MILLION,
         'Thai':60.5*MILLION, 'Polish':40.265*MILLION, 'Ukrainian':32.948*MILLION, 'Dutch':23.025*MILLION, 'Finnish':5.789*MILLION}
 
-        for language in languageList:
-            if language in languagePopulationDic.keys():
-                population += languagePopulationDic[language]
+        # for language in languageList:
+        #     if language in languagePopulationDic.keys():
+        #         population += languagePopulationDic[language]
+        for language, population in languagePopulationDic.items():
+            if languageList.find(language) != -1:
+                totalPopulation += population
 
-        return population / WORLD_POPULATION
+        return totalPopulation / MILLION
     
     def DigitalizeTag(self, tagList):
         return len(tagList)
