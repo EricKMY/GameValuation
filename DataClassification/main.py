@@ -26,7 +26,7 @@ def main():
     print(std)
     print(amin)
     print(amax)
-    print(result)
+    # print(result)
 
     # a = b = 0
     # 
