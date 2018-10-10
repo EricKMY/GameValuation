@@ -21,7 +21,7 @@ class SteamSpider(CrawlSpider):
         #         url = "https://steamspy.com/year/200" + str(i)
         #     else:
         #         url = "https://steamspy.com/year/20" + str(i)
-        url = "https://steamspy.com/year/2015"
+        url = "https://steamspy.com/year/2016"
         yield Request(url=url, callback=self.parse)
            
 

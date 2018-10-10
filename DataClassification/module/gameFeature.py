@@ -29,7 +29,10 @@ class GameFeature():
 
             introduction = self.CreateIntroduction(record[9])
             about = self.CreateAbout(record[10])
-            gameDic[name] = {'sell':sell, 'price':price, 'date':date, 'tag':tag, 'language':language, 'introduction':introduction, 'about':about}
+
+            youtube = self.CreateYoutube(record[11])
+
+            gameDic[name] = {'sell':sell, 'price':price, 'date':date, 'tag':tag, 'language':language, 'introduction':introduction, 'about':about, 'youtube':youtube}
         
         schema.close()
         return gameDic
@@ -107,3 +110,11 @@ class GameFeature():
         for element in tempList:
             aboutList.append(element.strip())
         return aboutList
+
+    def CreateYoutube(self, rawMeat):
+        if (rawMeat == None):
+            view = 0
+        else:
+            viewList = rawMeat.strip().split(" ")
+            view = viewList[1].replace(',', '')
+        return view
