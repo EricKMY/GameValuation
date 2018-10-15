@@ -14,53 +14,70 @@
     <form method="post" >
         <br>
         <div>
-            <label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">名稱</label><br><br>
-            <input style="padding-right:15%; margin-left: 5%; height: 45px; font-size: 20px" type="textbox" name="title" >
+            <label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">Title</label><br><br>
+            <input style="padding-right:15%; margin-left: 5%; height: 45px; font-size: 20px" type="textbox" name="name">
         </div>
         <div>
-            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">簡介</label><br><br>
-            <textarea style="overflow:scroll; margin-left: 5%; font-size: 20px" rows="4" cols="100" wrap="hard" name="short_introduction"></textarea>
+            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">About</label><br><br>
+            <textarea style="overflow:scroll; margin-left: 5%; font-size: 20px" rows="4" cols="100" wrap="hard" name="about"></textarea>
         </div>
         <div>
-            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">介紹</label><br><br>
+            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">Introduction</label><br><br>
             <textarea style="overflow:scroll; margin-left: 5%; font-size: 20px" rows="7" cols="100" wrap="hard" name="introduction"></textarea>
         </div>
         <div>
-            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">標籤</label><br><br>
-            <label style="margin-left: 5%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="tag" value="戰略">戰略</label>
-            <label style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="tag" value="益智">益智</label>
-            <label style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="tag" value="動作">動作</label>
+            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">Tag</label><br><br>
+            <input style="margin-left: 5%; height: 45px; font-size: 20px; width: 20%" type="number" name="tag" min="0">
+        </div>
+        <div name="lan">
+            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">Language</label><br><br>
+            <label class="label label-primary" style="margin-left: 5%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="English">English</label>
+            <label class="label label-success" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Chinese">Chinese</label>
+            <label class="label label-info" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Spanish">Spanish</label>
+            <label class="label label-warning" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="French">French</label>
+            <label class="label label-danger" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Russian">Russian</label><br><br>
+            <label class="label label-primary" style="margin-left: 5%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Portuguese">Portuguese</label>
+            <label class="label label-success" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="German">German</label>
+            <label class="label label-info" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Japanese">Japanese</label>
+            <label class="label label-warning" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Turkish">Turkish</label>
+            <label class="label label-danger" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Korean">Korean</label><br><br>
+            <label class="label label-primary" style="margin-left: 5%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Italian">Italian</label>
+            <label class="label label-success" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Thai">Thai</label>
+            <label class="label label-info" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Polish">Polish</label>
+            <label class="label label-warning" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Ukrainian">Ukrainian</label>
+            <label class="label label-danger" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Dutch">Dutch</label>
+            <label class="label label-danger" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="Finnish">Finnish</label>
+        </div>
+        <div style="width:28%; float:left;">
+            <br><br><label class="label label-default" style="font-size: 30px; margin-left: 17%; font-family:monospace">Price</label><br><br>
+            <input style="margin-left: 17%; height: 45px; font-size: 20px; width: 71%" type="number" name="price" min="0"><br>
+            <br><label class="label label-default" style="font-size: 30px; margin-left: 17%; font-family:monospace">View</label><br><br>
+            <input style="margin-left: 17%; height: 45px; font-size: 20px; width: 71%" type="number" name="view" min="0">
+        </div>
+        <div style="width:72%; float:left;">
+            <br><br><br><br><br><button class="btn btn-warning" type="submit" style="font-size: 30px; margin-left: 0%; width: 20%; height: 100px">Predict</button>
+            <label class="label label-default" style="font-size: 40px; margin-left: 3%" id="label_result">Sell</label>
+            <label style="font-size: 40px; margin-left: 1%; color: aliceblue" id="sold">{{ sold }}</label>
         </div>
         <div>
-            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">語言</label><br><br>
-            <label class="label label-default" style="margin-left: 5%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="中文">中文</label>
-            <label class="label label-primary" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="英文">英文</label>
-            <label class="label label-success" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="法文">法文</label>
-            <label class="label label-info" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="俄文">俄文</label>
-            <label class="label label-warning" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="德文">德文</label>
-            <label class="label label-danger" style="margin-left: 2%; font-size: 25px;"><input style="zoom: 1.5" type="checkbox" name="language" value="西班牙文">西班牙文</label>
-        </div>
-        <div>
-            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">售價</label><br><br>
-            <input style="padding-right:2%; margin-left: 5%; height: 45px; font-size: 20px" type="textbox" name="price">
-        </div>
-        <div>
-            <br><label class="label label-default" style="font-size: 30px; margin-left: 5%; font-family:monospace">外部因素</label><br><br>
-            <input style="padding-right:52%; margin-left: 5%; height: 45px; font-size: 20px" type="textbox" name="other" >
-        </div>
-        <br><button class="btn btn-warning" type="submit" style="font-size: 30px; margin-left: 68%">計算</button>
-        <div>
-            <label style="font-size: 40px; display: none;" id="label_result">銷量 </label>
-            <label style="font-size: 40px; display: none;" id="sold"></label>
+            
         </div>
     </form>
     <script>
-        var sold = {{sold|tojson}};
-        if(sold != ''){
-            document.getElementById("sold").style.display="";
-            document.getElementById("label_result").style.display="";
-            document.getElementById("sold").innerText=sold;
-        }
+        document.getElementsByName("name")[0].value={{name|tojson}};
+        document.getElementsByName("short_introduction")[0].value={{about|tojson}};
+        document.getElementsByName("introduction")[0].value={{introduction|tojson}};
+        document.getElementsByName("tag")[0].value={{tag|tojson}};
+        {% for lan in language %}
+            var a = {{lan|tojson}};
+            for(var i=0; i < 16; i=i+1){
+                if(a == document.getElementsByName("language")[i].value){
+                    document.getElementsByName("language")[i].checked = "checked";
+                }
+            }
+        {% endfor %}
+        document.getElementsByName("price")[0].value={{price|tojson}};
+        document.getElementsByName("view")[0].value={{view|tojson}};
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
