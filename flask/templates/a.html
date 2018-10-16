@@ -65,7 +65,7 @@
     </form>
     <script>
         document.getElementsByName("name")[0].value={{name|tojson}};
-        document.getElementsByName("short_introduction")[0].value={{about|tojson}};
+        document.getElementsByName("about")[0].value={{about|tojson}};
         document.getElementsByName("introduction")[0].value={{introduction|tojson}};
         document.getElementsByName("tag")[0].value={{tag|tojson}};
         {% for lan in language %}

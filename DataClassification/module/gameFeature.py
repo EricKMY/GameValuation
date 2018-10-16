@@ -23,14 +23,12 @@ class GameFeature():
             date = self.CreateDate(record[4])
             tag = self.CreateTag(record[5])
             language = self.CreateLanguage(record[6])
-            # sysReqMin = self.CreateSysReq(record[7])
-            # sysReqRec = self.CreateSysReq(record[8])
             introduction = self.CreateIntroduction(record[9])
             about = self.CreateAbout(record[10])
-            view = self.CreateYoutube(record[11])            
+            view = self.CreateYoutube(record[11])
 
             gameDic[name] = {'sell':sell, 'price':price, 'date':date, 'tag':tag, 'language':language, 'introduction':introduction, 'about':about, 'view':view}
-        
+
         schema.close()
         return gameDic
 

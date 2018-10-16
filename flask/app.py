@@ -25,7 +25,7 @@ def page_a():
 
     if request.method == 'POST':
         name = request.form.get('name', '')
-        about = request.form.get('short_introduction', '')
+        about = request.form.get('about', '')
         introduction = request.form.get('introduction', '')
         tag = request.form.get('tag', '')
         language = request.form.getlist('language')

@@ -36,7 +36,6 @@ class FeatureDigitalize():
     def DigitalizeLanguage(self, languageList):
         BILLION = 10**9
         MILLION = 10**6
-        # WORLD_POPULATION = 7.62 * BILLION
         totalPopulation = 0
         languagePopulationDic = {'English':1.12*BILLION, 'Chinese':1.1*BILLION, 'Spanish':512.9*MILLION,
         'French':284.9*MILLION, 'Russian':264.3*MILLION, 'Portuguese':236.5*MILLION,
@@ -44,15 +43,12 @@ class FeatureDigitalize():
         'Turkish':78.9*MILLION, 'Korean':77.2*MILLION, 'Italian':67.8*MILLION,
         'Thai':60.5*MILLION, 'Polish':40.265*MILLION, 'Ukrainian':32.948*MILLION, 'Dutch':23.025*MILLION, 'Finnish':5.789*MILLION}
 
-        # for language in languageList:
-        #     if language in languagePopulationDic.keys():
-        #         population += languagePopulationDic[language]
         for language, population in languagePopulationDic.items():
             if languageList.find(language) != -1:
                 totalPopulation += population
 
         return totalPopulation / MILLION
-    
+
     def DigitalizeTag(self, tagList):
         return len(tagList)
 
